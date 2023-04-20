@@ -22,6 +22,7 @@
     "@walletconnect/web3-provider": "^1.8.0",
     "dotenv": "^16.0.3",
     "eslint": "^8.38.0",
+    "eslint-config-next": "^13.3.0",
     "eslint-plugin-mui": "^0.1.1",
     "ethers": "^6.3.0",
     "next": "13.2.4",
