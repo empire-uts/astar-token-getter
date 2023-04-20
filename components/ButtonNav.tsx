@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Box, Typography } from '@mui/material';
+import { ethers } from 'ethers';
 import { Web3Provider } from '@ethersproject/providers';
 import WalletConnectProvider from '@walletconnect/web3-provider';
 
