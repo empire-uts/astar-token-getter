@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import { Button, Box, Typography } from '@mui/material';
-import ButtonNav from '../../components/ButtonNav';
+import ButtonNav from '../components/ButtonNav';
 import * as dotenv from 'dotenv'
 
 const inter = Inter({ subsets: ['latin'] })

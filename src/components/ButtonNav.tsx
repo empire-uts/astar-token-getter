@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Box, Typography } from '@mui/material';
 import { ethers } from 'ethers';
-import { Web3Provider } from '@ethersproject/providers';
+import { Web3Provider, BaseProvider } from '@ethersproject/providers';
 import WalletConnectProvider from '@walletconnect/web3-provider';
+
+// const { ethereum } = window as unknown as { ethereum: BaseProvider }
+declare global {
+  interface Window {
+    ethereum: any
+  }
+}
 
 const ButtonNav: React.FC = () => {
   const [isWalletConnected, setIsWalletConnected] = useState(false);
@@ -44,19 +51,10 @@ const ButtonNav: React.FC = () => {
       });
   
       await walletConnectProvider.enable();
-      const newProvider = new providers.Web3Provider(walletConnectProvider);
+      const newProvider = new Web3Provider(walletConnectProvider);
       setProvider(newProvider);
       console.log("Connected!");
     }
-  };
-
-  const disconnectWallet = () => {
-    setIsWalletConnected(false);
-    setProvider(null);
-    if (provider) {
-      provider.provider.disconnect?.();
-    }
-    console.log("Disconnected!");
   };
 
   return (
@@ -72,7 +70,7 @@ const ButtonNav: React.FC = () => {
         {isWalletConnected ? 'Wallet Connected!!' : 'Connect Wallet!'}
       </Typography>
       {isWalletConnected ? (
-        <Button onClick={disconnectWallet}>Disconnect Wallet</Button>
+        <Button>Wallet Connected</Button>
       ) : (
         <Button onClick={connectWallet}>Connect Wallet</Button>
       )}
