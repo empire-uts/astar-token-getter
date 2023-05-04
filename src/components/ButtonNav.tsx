@@ -14,7 +14,7 @@ declare global {
 
 const ButtonNav: React.FC = () => {
   const [isWalletConnected, setIsWalletConnected] = useState(false);
-  const [provider, setProvider] = useState<window.ethereum | null>(null);
+  const [provider, setProvider] = useState<Web3Provider | null>(null);
 
 
   useEffect(() => {
