@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Box, Typography } from '@mui/material';
+import { Button, Box, Typography, BottomNavigation } from '@mui/material';
 import { ethers } from 'ethers';
 import { Web3Provider, BaseProvider } from '@ethersproject/providers';
 import WalletConnectProvider from '@walletconnect/web3-provider';
+
 
 // const { ethereum } = window as unknown as { ethereum: BaseProvider }
 declare global {
@@ -13,7 +14,7 @@ declare global {
 
 const ButtonNav: React.FC = () => {
   const [isWalletConnected, setIsWalletConnected] = useState(false);
-  const [provider, setProvider] = useState<Web3Provider | null>(null);
+  const [provider, setProvider] = useState<window.ethereum | null>(null);
 
 
   useEffect(() => {
@@ -56,25 +57,18 @@ const ButtonNav: React.FC = () => {
       console.log("Connected!");
     }
   };
+  
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'flex-end',
-        justifyContent: 'center',
-      }}
+    <BottomNavigation 
+      sx={{ width: 500 }}
     >
-      <Typography>
-        {isWalletConnected ? 'Wallet Connected!!' : 'Connect Wallet!'}
-      </Typography>
       {isWalletConnected ? (
-        <Button>Wallet Connected</Button>
+        <Button variant="contained" size="large">Wallet Connected</Button>
       ) : (
-        <Button onClick={connectWallet}>Connect Wallet</Button>
+        <Button variant="contained" size="large" onClick={connectWallet}>Connect Wallet</Button>
       )}
-    </Box>
+    </BottomNavigation>
   );
 };
 
